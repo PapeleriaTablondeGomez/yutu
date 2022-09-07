@@ -1,0 +1,34 @@
+#!/usr/bin/env python3
+
+
+from pytube import YouTube
+import pytube
+import time
+
+path="/data/data/com.termux/files/home/"
+
+
+# ask for the link from user
+link = input("Ingrese el link del video que quiere descargar: ")
+yt = YouTube(link)
+
+print("Title: ", yt.title)
+print("Lengths: ", yt.length)
+
+
+print("Resoluciones posibles para descargar")
+
+lstst=yt.streams.all()
+for st in lstst:
+    print(st)
+
+
+itag = input("Ingrese la resolucion el itag: ")
+
+yt = pytube.YouTube(link)
+st=yt.streams.get_by_itag(itag)
+
+st.download(path)
+
+print("Descargar Finalizada")
+
